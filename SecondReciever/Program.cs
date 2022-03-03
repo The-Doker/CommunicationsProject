@@ -15,7 +15,13 @@ namespace SecondReciever
             {
                 channel.ExchangeDeclare(exchange: "group-one", type: ExchangeType.Fanout);
 
-                var queueName = channel.QueueDeclare().QueueName;
+                //var queueName = channel.QueueDeclare().QueueName;
+                var queueName = "queue-one";
+                channel.QueueDeclare(queue: queueName,
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
                 channel.QueueBind(queue: queueName,
                                   exchange: "group-one",
                                   routingKey: "");
