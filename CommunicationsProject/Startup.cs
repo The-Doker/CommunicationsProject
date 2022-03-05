@@ -1,4 +1,5 @@
 using CommunicationsProject.Jobs;
+using CommunicationsProject.Producer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,6 +56,7 @@ namespace CommunicationsProject
 
             });
             services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+            services.AddTransient<IMessageProducer,RabbitMessageProducer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
